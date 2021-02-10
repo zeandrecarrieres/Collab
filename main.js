@@ -69,7 +69,18 @@ function showPerson(person){
 //? Création d'un évènement qui se lance au chargement du DOM
 window.addEventListener("DOMContentLoaded",()=>{
     //? Affiche la review en fonction de l'index
-    showPerson(currentReview)
+    showPerson(currentReview);
+    //? Initialisation d'un intervalle de 10s pour afficher la prochaine review
+    setInterval(()=>{
+      currentReview++;
+      //? Création d'une condition qui vérifie que l'incrémentation n'a pas fait l'index currentReview dépasser la taille de l'Array
+      if(currentReview > reviews.length - 1){
+        //? Si l'incrémentation à fait currentReview dépasser la taille de l'Array, on remplace sa valeur par 0 (pour retourner au début de l'array)
+        currentReview = 0;
+      }
+      showPerson(currentReview);
+
+    },10000)
 });
 
 //? Création d'un nouvel évènement 'click' sur le bouton précédent
